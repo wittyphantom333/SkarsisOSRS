@@ -25,6 +25,7 @@ import io.ruin.model.shop.ShopItem;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -44,8 +45,8 @@ public class PacketSender {
         if (player instanceof AIPlayer) {
             return;
         }
-        if(!Thread.currentThread().getName().equals("server-worker #1"))
-            Server.logError(player.getName() + " wrote packet off main thread!", new Throwable());
+/*        if(!Thread.currentThread().getName().equals("server-worker #1"))
+            Server.logError(player.getName() + " wrote packet off main thread!", new Throwable());*/
         player.getChannel().write(out.encode(cipher).toBuffer());
     }
 
@@ -126,6 +127,7 @@ public class PacketSender {
                             out.skip(16);
                         else
                             out.addInt(r.keys[0]).addInt(r.keys[1]).addInt(r.keys[2]).addInt(r.keys[3]);
+                        //System.out.println("regionID: " + regionId +" keys: " + Arrays.toString(r.keys));
                         player.addRegion(r);
                         regionCount++;
                     }
@@ -285,6 +287,35 @@ public class PacketSender {
         write(out);
     }
 
+    public void sendClientScript(int id, Object... params) {
+        OutBuffer out = new OutBuffer(1000).sendVarShortPacket(56);
+
+        String args = "";
+
+        if (params != null) {
+            for (int index = params.length - 1; index >= 0; index--) {
+                if (params[index] instanceof String) {
+                    args += "s";
+                } else {
+                    args += "i";
+                }
+            }
+        }
+
+        out.addString(args);
+
+        for(int i = params.length - 1; i >= 0; i--) {
+            Object param = params[i];
+            if(param instanceof String)
+                out.addString((String) param);
+            else
+                out.addInt((Integer) param);
+        }
+        out.addInt(id);
+        write(out);
+    }
+
+
     public void sendClientScript(int id, String type, Object... params) {
         OutBuffer out = new OutBuffer(3 + Protocol.strLen(type) + (params.length * 4)).sendVarShortPacket(56)
                 .addString(type);
@@ -341,6 +372,10 @@ public class PacketSender {
         write(out);
     }
 
+    public void sendItems(int containerId, Item... items) {
+        sendItems(-1, containerId, items, items.length);
+    }
+
     public void sendItems(int parentId, int childId, int containerId, Item... items) {
         sendItems(parentId << 16 | childId, containerId, items, items.length);
     }
@@ -348,7 +383,6 @@ public class PacketSender {
     public void sendItems(int parentId, int childId, int containerId, Item[] items, int length) {
         sendItems(parentId << 16 | childId, containerId, items, length);
     }
-
 
     public void sendItems(WidgetInfo widgetInfo, int containerId, Item[] items, int length) {
         sendItems(widgetInfo.getPackedId(), containerId, items, length);
@@ -363,7 +397,10 @@ public class PacketSender {
             Item item = items[slot];
             out.addInt(item == null || item.getId() < 0 ? 0 : item.getId() + 1);
             out.addInt(item == null || item.getId() < 0 ? 0 : item.getAmount());
-            String[] attributes = AttributeExtensions.getUpgradesForDisplay(item);
+            String[] attributes = null;
+            if(item != null && item.hasAttributes()) {
+                attributes = AttributeExtensions.getUpgradesForDisplay(item);
+            }
             out.addByte(attributes == null ? 0 : attributes.length);
             if (attributes != null) {
                 for (String attribute : attributes) {
@@ -402,7 +439,10 @@ public class PacketSender {
                 out.addSmart(slot);
                 out.addInt(item == null || item.getId() < 0 ? 0 : item.getId() + 1);
                 out.addInt(item == null || item.getId() < 0 ? 0 : item.getAmount());
-                String[] attributes = AttributeExtensions.getUpgradesForDisplay(item);
+                String[] attributes = null;
+                if(item != null && item.hasAttributes()) {
+                    attributes = AttributeExtensions.getUpgradesForDisplay(item);
+                }
                 out.addByte(attributes == null ? 0 : attributes.length);
                 if (attributes != null) {
                     for (String attribute : attributes) {
@@ -424,7 +464,10 @@ public class PacketSender {
                 out.addSmart(slot);
                 out.addInt(item == null || item.getDisplayId(player) < 0 ? 0 : item.getDisplayId(player) + 1);
                 out.addInt(item == null || item.getDisplayId(player) < 0 ? 0 : item.getAmount());
-                String[] attributes = AttributeExtensions.getUpgradesForDisplay(item);
+                String[] attributes = null;
+                if(item != null && item.hasAttributes()) {
+                    attributes = AttributeExtensions.getUpgradesForDisplay(item);
+                }
                 out.addByte(attributes == null ? 0 : attributes.length);
                 if (attributes != null) {
                     for (String attribute : attributes) {
@@ -844,6 +887,10 @@ public class PacketSender {
     public void resetCamera() {
         OutBuffer out = new OutBuffer(1).sendFixedPacket(76);
         write(out);
+    }
+
+    public void setGraphic(int parent, int child, int gfx) {
+        sendClientScript(44, "", parent << 16 | child, gfx);
     }
 
 }

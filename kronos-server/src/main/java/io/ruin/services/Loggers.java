@@ -500,6 +500,7 @@ public class Loggers extends DatabaseUtils {
             putItems(player.getUserId(), "equipment", player.getEquipment(), statement);
             putItems(player.getUserId(), "bank", player.getBank(), statement);
             putItems(player.getUserId(), "lootingbag", player.getLootingBag(), statement);
+            putItems(player.getUserId(), "collectionlog", player.getCollectionLog(), statement);
 
             // Mark the batch as done, commit it.
             statement.executeBatch();

@@ -300,6 +300,8 @@ public class Config {
      * Misc
      */
 
+    public static final Config COLLECTION_LOG_KC_TAB = varp(2048, false);
+
     public static final Config GAME_FILTER = varpbit(26, true);
 
     public static final Config MAGIC_BOOK = varpbit(4070, true);

@@ -44,6 +44,7 @@ import io.ruin.model.item.containers.Inventory;
 import io.ruin.model.item.containers.Trade;
 import io.ruin.model.item.containers.bank.Bank;
 import io.ruin.model.item.containers.bank.BankPin;
+import io.ruin.model.item.containers.collectionlog.CollectionLog;
 import io.ruin.model.map.*;
 import io.ruin.model.map.ground.GroundItem;
 import io.ruin.model.map.object.actions.impl.edgeville.Christmas;
@@ -75,6 +76,14 @@ import static io.ruin.cache.ItemID.*;
 public class Player extends PlayerAttributes {
 
     public Shop viewingShop;
+
+    /**
+     * Collection Log
+     */
+    @Expose private CollectionLog collectionLog;
+
+    public CollectionLog getCollectionLog() { return collectionLog; }
+
     /**
      * Session
      */
@@ -1088,6 +1097,10 @@ public class Player extends PlayerAttributes {
             raidRewards = new ItemContainer();
         raidRewards.init(player, 3, -1, -1, 581, false);
 
+        if (collectionLog == null)
+            collectionLog = new CollectionLog();
+        collectionLog.init(this, 500, -1, -1, 620, true);//621, 35
+
         if(bankPin == null)
             bankPin = new BankPin();
         bankPin.init(this);
@@ -1421,6 +1434,7 @@ public class Player extends PlayerAttributes {
         runePouch.sendUpdates();
         tournamentRunePouch.sendUpdates();
         box.sendUpdates();
+        collectionLog.sendUpdates();
 
         combat.preAttack();
         TargetRoute.beforeMovement(this);

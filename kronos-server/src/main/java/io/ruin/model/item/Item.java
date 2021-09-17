@@ -28,6 +28,7 @@ import java.util.Map;
 public class Item {
 
     @Expose @Getter private int id, amount;
+    @Expose private int uniqueValue;
     @Expose private Map<String, String> attributes;
     @Setter @Getter private int slot = -1;
 
@@ -64,6 +65,12 @@ public class Item {
             this.attributes = Maps.newHashMap();
         else
             this.attributes = Maps.newHashMap(attributes);
+    }
+
+    public Item(int id, int amount, int uniqueValue) {
+        this.id = id;
+        this.amount = amount;
+        this.uniqueValue = uniqueValue;
     }
 
     /**
@@ -237,7 +244,7 @@ public class Item {
      * Adds the desired amount to this item's quantity.
      * @param amount
      */
-	public void incrementAmount(long amount) {
+    public void incrementAmount(long amount) {
         long newAmount = (long) this.amount + amount;
         if(newAmount <= 0) {
             this.amount = 0;
@@ -384,6 +391,36 @@ public class Item {
         return slot;
     }
 
+    public Item note() {
+        if (getDef().notedTemplateId > 0 || getDef().notedId < 1) {
+            return this;
+        }
+
+        return new Item(getDef().notedId, amount, uniqueValue);
+    }
+
+    /**
+     * Unique value
+     * @return
+     */
+
+    public Item setUniqueValue(int value) {
+        this.uniqueValue = value;
+
+        return this;
+    }
+
+    public int getUniqueValue() {
+        return uniqueValue;
+    }
+
+    public Item modifyUniqueValue(int value) {
+        setUniqueValue(getUniqueValue() + value);
+
+        return this;
+    }
+
+
     public static void examine(Player player, int id) {
         examine(player, id, 1);
     }
@@ -401,6 +438,10 @@ public class Item {
 
     public void clearAttributes() {
         attributes.clear();
+    }
+
+    public boolean noteable() {
+        return id != note().id;
     }
 
 }

@@ -387,12 +387,14 @@ public abstract class PlayerAttributes extends Entity {
      * Clue scrolls
      */
 
+    @Expose public ClueSave beginnerClue;
     @Expose public ClueSave easyClue;
     @Expose public ClueSave medClue;
     @Expose public ClueSave hardClue;
     @Expose public ClueSave eliteClue;
     @Expose public ClueSave masterClue;
 
+    @Expose public int beginnerClueCount;
     @Expose public int easyClueCount;
     @Expose public int medClueCount;
     @Expose public int hardClueCount;
@@ -778,11 +780,18 @@ public abstract class PlayerAttributes extends Entity {
     @Expose public KillCounter abyssalSireKills = new KillCounter();
     @Expose public KillCounter skotizoKills = new KillCounter();
     @Expose public KillCounter wintertodtKills = new KillCounter();
+    @Expose public KillCounter nightmareofAshihamaKills = new KillCounter();
     @Expose public KillCounter oborKills = new KillCounter();
     @Expose public KillCounter chambersofXericKills = new KillCounter();
+    @Expose public KillCounter theatreOfBloodKills = new KillCounter();
     @Expose public KillCounter derangedArchaeologistKills = new KillCounter();
     @Expose public KillCounter elvargKills = new KillCounter();
     @Expose public KillCounter vorkathKills = new KillCounter();
+    @Expose public KillCounter sarachnisKills = new KillCounter();
+    @Expose public KillCounter alchemicalHydraKills = new KillCounter();
+    @Expose public KillCounter bryophytaKills = new KillCounter();
+    @Expose public KillCounter grotesqueGuardianKills = new KillCounter();
+    @Expose public KillCounter hesporiKills = new KillCounter();
 
     /**
      * Slayer kill counters
@@ -1277,5 +1286,10 @@ public abstract class PlayerAttributes extends Entity {
     @Expose public boolean cerberusMetamorphisis;
     @Expose public boolean infernalJadMetamorphisis;
     @Expose public boolean abyssalSireMetamorphisis;
+
+    @Expose @Getter @Setter public int collection_log_current_entry = 0;
+    @Expose @Getter @Setter public int collection_log_current_struct = 471;//471-475
+    @Expose @Getter @Setter public int collection_log_current_tab = 0;
+    @Expose @Getter @Setter public int[] collection_log_current_params = player.getCollectionLog().bossParams;
 
 }
