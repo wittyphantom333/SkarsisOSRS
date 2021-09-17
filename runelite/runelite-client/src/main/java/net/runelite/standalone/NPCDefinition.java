@@ -12,39 +12,39 @@ import net.runelite.rs.api.RSSprite;
 public class NPCDefinition extends DualNode implements RSNPCDefinition {
    @ObfuscatedName("n")
    @ObfuscatedSignature(
-      signature = "Lhp;"
+           signature = "Lhp;"
    )
    public static AbstractArchive NpcDefinition_modelArchive;
    @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "Lem;"
+           signature = "Lem;"
    )
    public static EvictingDualNodeHashTable NpcDefinition_cachedModels;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
-      signature = "Lem;"
+           signature = "Lem;"
    )
    public static EvictingDualNodeHashTable NpcDefinition_cached;
    @ObfuscatedName("z")
    @ObfuscatedSignature(
-      signature = "Lhp;"
+           signature = "Lhp;"
    )
    public static AbstractArchive NpcDefinition_archive;
    @ObfuscatedName("o")
    @ObfuscatedGetter(
-      intValue = 1951589919
+           intValue = 1951589919
    )
    public int walkingAnimation;
    @ObfuscatedName("p")
    public String name;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
-      intValue = -441203939
+           intValue = -441203939
    )
    public int size;
    @ObfuscatedName("r")
    @ObfuscatedGetter(
-      intValue = 795033679
+           intValue = 795033679
    )
    public int id;
    @ObfuscatedName("s")
@@ -53,7 +53,7 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
    short[] colors;
    @ObfuscatedName("w")
    @ObfuscatedGetter(
-      intValue = -2041030831
+           intValue = -2041030831
    )
    public int walkRightSequence;
    @ObfuscatedName("x")
@@ -62,27 +62,27 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
    int[] additionalModels;
    @ObfuscatedName("a")
    @ObfuscatedGetter(
-      intValue = 1113665339
+           intValue = 1113665339
    )
    public int walkBackSequence;
    @ObfuscatedName("aa")
    @ObfuscatedGetter(
-      intValue = 950956241
+           intValue = 950956241
    )
    public int rotation;
    @ObfuscatedName("ab")
    @ObfuscatedGetter(
-      intValue = -313433817
+           intValue = -313433817
    )
    int transformVarp;
    @ObfuscatedName("ac")
    @ObfuscatedGetter(
-      intValue = 1963706097
+           intValue = 1963706097
    )
    int ambient;
    @ObfuscatedName("al")
    @ObfuscatedSignature(
-      signature = "Llb;"
+           signature = "Llb;"
    )
    IterableNodeHashTable params;
    @ObfuscatedName("ao")
@@ -91,41 +91,41 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
    public int[] transforms;
    @ObfuscatedName("ar")
    @ObfuscatedGetter(
-      intValue = 1759904707
+           intValue = 1759904707
    )
    int transformVarbit;
    @ObfuscatedName("as")
    public boolean isClickable;
    @ObfuscatedName("aw")
    @ObfuscatedGetter(
-      intValue = 246799047
+           intValue = 246799047
    )
    public int headIconPrayer;
    @ObfuscatedName("ax")
    public boolean isInteractable;
    @ObfuscatedName("az")
    @ObfuscatedGetter(
-      intValue = -1785698549
+           intValue = -1785698549
    )
    int contrast;
    @ObfuscatedName("b")
    @ObfuscatedGetter(
-      intValue = -394985883
+           intValue = -394985883
    )
    public int turnRightSequence;
    @ObfuscatedName("c")
    @ObfuscatedGetter(
-      intValue = -1669190657
+           intValue = -1669190657
    )
    public int turnLeftSequence;
    @ObfuscatedName("d")
    @ObfuscatedGetter(
-      intValue = 758770497
+           intValue = 758770497
    )
    int widthScale;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
-      intValue = -1204590857
+           intValue = -1204590857
    )
    public int walkLeftSequence;
    @ObfuscatedName("f")
@@ -136,19 +136,19 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
    short[] retextureTo;
    @ObfuscatedName("i")
    @ObfuscatedGetter(
-      intValue = -182220755
+           intValue = -182220755
    )
    public int standingAnimation;
    @ObfuscatedName("j")
    @ObfuscatedGetter(
-      intValue = 1360683279
+           intValue = 1360683279
    )
    public int combatLevel;
    @ObfuscatedName("k")
    public boolean isVisible;
    @ObfuscatedName("l")
    @ObfuscatedGetter(
-      intValue = -1757828027
+           intValue = -1757828027
    )
    int heightScale;
    @ObfuscatedName("m")
@@ -189,16 +189,16 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    @ObfuscatedName("n")
    @ObfuscatedSignature(
-      signature = "(B)V",
-      garbageValue = "-117"
+           signature = "(B)V",
+           garbageValue = "-117"
    )
    void method4402() {
    }
 
    @ObfuscatedName("p")
    @ObfuscatedSignature(
-      signature = "(B)Ldw;",
-      garbageValue = "58"
+           signature = "(B)Ldw;",
+           garbageValue = "58"
    )
    public final ModelData method4406() {
       if(this.transforms != null) {
@@ -251,8 +251,8 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    @ObfuscatedName("q")
    @ObfuscatedSignature(
-      signature = "(I)Lil;",
-      garbageValue = "1423511184"
+           signature = "(I)Lil;",
+           garbageValue = "1423511184"
    )
    public final NPCDefinition method4407() {
       int var1 = -1;
@@ -274,8 +274,8 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    @ObfuscatedName("r")
    @ObfuscatedSignature(
-      signature = "(Lix;ILix;IS)Ldh;",
-      garbageValue = "-1424"
+           signature = "(Lix;ILix;IS)Ldh;",
+           garbageValue = "-1424"
    )
    public final Model method4405(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4) {
       if(this.transforms != null) {
@@ -347,8 +347,8 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "(Lkl;II)V",
-      garbageValue = "-1943278683"
+           signature = "(Lkl;II)V",
+           garbageValue = "-1943278683"
    )
    void method4424(Buffer var1, int var2) {
       int var3;
@@ -377,6 +377,8 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
          this.walkBackSequence = var1.readUnsignedShort();
          this.walkLeftSequence = var1.readUnsignedShort();
          this.walkRightSequence = var1.readUnsignedShort();
+      } else if(var2 == 18) {
+         var1.readUnsignedShort();
       } else if(var2 >= 30 && var2 < 35) {
          this.actions[var2 - 30] = var1.readString();
          this.actionsHook(var2 - 30);
@@ -473,8 +475,8 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    @ObfuscatedName("v")
    @ObfuscatedSignature(
-      signature = "(Lkl;B)V",
-      garbageValue = "-41"
+           signature = "(Lkl;B)V",
+           garbageValue = "-41"
    )
    void method4429(Buffer var1) {
       while(true) {
@@ -489,8 +491,8 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    @ObfuscatedName("y")
    @ObfuscatedSignature(
-      signature = "(III)I",
-      garbageValue = "-1804168798"
+           signature = "(III)I",
+           garbageValue = "-1804168798"
    )
    public int method4409(int var1, int var2) {
       return HealthBar.getParam(this.params, var1, var2);
@@ -509,19 +511,19 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    public HeadIcon getOverheadIcon() {
       switch(this.getRsOverheadIcon()) {
-      case 0:
-         return HeadIcon.MELEE;
-      case 1:
-         return HeadIcon.RANGED;
-      case 2:
-         return HeadIcon.MAGIC;
-      case 3:
-      case 4:
-      case 5:
-      default:
-         return null;
-      case 6:
-         return HeadIcon.RANGE_MAGE;
+         case 0:
+            return HeadIcon.MELEE;
+         case 1:
+            return HeadIcon.RANGED;
+         case 2:
+            return HeadIcon.MAGIC;
+         case 3:
+         case 4:
+         case 5:
+         default:
+            return null;
+         case 6:
+            return HeadIcon.RANGE_MAGE;
       }
    }
 
@@ -571,8 +573,8 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    @ObfuscatedName("i")
    @ObfuscatedSignature(
-      signature = "(ILjava/lang/String;I)Ljava/lang/String;",
-      garbageValue = "-1270482233"
+           signature = "(ILjava/lang/String;I)Ljava/lang/String;",
+           garbageValue = "-1270482233"
    )
    public String method4410(int var1, String var2) {
       return class94.method2216(this.params, var1, var2);
@@ -580,8 +582,8 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    @ObfuscatedName("m")
    @ObfuscatedSignature(
-      signature = "(B)Z",
-      garbageValue = "-43"
+           signature = "(B)Z",
+           garbageValue = "-43"
    )
    public boolean method4408() {
       if(this.transforms == null) {
@@ -600,7 +602,7 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    @ObfuscatedName("v")
    @ObfuscatedSignature(
-      signature = "(Lhp;III)Llf;"
+           signature = "(Lhp;III)Llf;"
    )
    public static Sprite method4417(AbstractArchive var0, int var1, int var2, int var3) {
       net.runelite.api.Sprite var4 = (net.runelite.api.Sprite)Client.spriteOverrides.get(Integer.valueOf(var1));
@@ -609,8 +611,8 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
 
    @ObfuscatedName("gr")
    @ObfuscatedSignature(
-      signature = "(IIIIIIII)V",
-      garbageValue = "474931921"
+           signature = "(IIIIIIII)V",
+           garbageValue = "474931921"
    )
    static final void method4403(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
       int var8 = var6 - 334;
@@ -670,6 +672,11 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
          actions[2] = "Reset-kdr";
          actions[3] = null;
          actions[4] = null;
+      } else if(id == 5567) {
+         name = "Blood Money Shop";
+         actions[0] = "Melee";
+         actions[1] = "Magic";
+         actions[2] = "Ranged";
       } else if (id == 1815) {
          name = "Vote Manager";
          actions[0] = "Trade";
@@ -699,6 +706,13 @@ public class NPCDefinition extends DualNode implements RSNPCDefinition {
          actions[0] = "Buy-items";
          actions[2] = "Sell-items";
          actions[3] = "Sets";
+         actions[4] = null;
+      } else if (id == 2883) {
+         /* Donator Range Shop */
+         name = "Donator Range Shop";
+         actions[0] = "Trade";
+         actions[2] = null;
+         actions[3] = null;
          actions[4] = null;
       } else if (id == 5523) {
          /* Gambling man */

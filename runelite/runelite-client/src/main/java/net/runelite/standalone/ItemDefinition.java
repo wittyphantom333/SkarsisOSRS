@@ -14,32 +14,32 @@ import net.runelite.rs.api.RSModel;
 public class ItemDefinition extends DualNode implements RSItemDefinition {
    @ObfuscatedName("p")
    @ObfuscatedSignature(
-      signature = "Lhp;"
+           signature = "Lhp;"
    )
    static AbstractArchive ItemDefinition_archive;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
-      signature = "Lhp;"
+           signature = "Lhp;"
    )
    static AbstractArchive ItemDefinition_modelArchive;
    @ObfuscatedName("b")
    @ObfuscatedSignature(
-      signature = "Lem;"
+           signature = "Lem;"
    )
    public static EvictingDualNodeHashTable ItemDefinition_cachedSprites;
    @ObfuscatedName("c")
    @ObfuscatedSignature(
-      signature = "Lem;"
+           signature = "Lem;"
    )
    static EvictingDualNodeHashTable ItemDefinition_cachedModels;
    @ObfuscatedName("i")
    @ObfuscatedSignature(
-      signature = "Lem;"
+           signature = "Lem;"
    )
    static EvictingDualNodeHashTable ItemDefinition_cached;
    @ObfuscatedName("s")
    @ObfuscatedGetter(
-      intValue = -1552364581
+           intValue = -1552364581
    )
    public int zoom2d;
    @ObfuscatedName("t")
@@ -50,34 +50,34 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
    short[] retextureFrom;
    @ObfuscatedName("a")
    @ObfuscatedGetter(
-      intValue = 1164476445
+           intValue = 1164476445
    )
    public int id;
    @ObfuscatedName("aa")
    public String[] groundActions;
    @ObfuscatedName("ab")
    @ObfuscatedGetter(
-      intValue = -281574303
+           intValue = -281574303
    )
    int shiftClickIndex;
    @ObfuscatedName("ac")
    @ObfuscatedGetter(
-      intValue = -1898122861
+           intValue = -1898122861
    )
    public int isStackable;
    @ObfuscatedName("ad")
    @ObfuscatedGetter(
-      intValue = -774987533
+           intValue = -774987533
    )
    int femaleModel1;
    @ObfuscatedName("ae")
    @ObfuscatedGetter(
-      intValue = -622073101
+           intValue = -622073101
    )
    int femaleHeadModel;
    @ObfuscatedName("af")
    @ObfuscatedGetter(
-      intValue = 1043908831
+           intValue = 1043908831
    )
    int resizeY;
    @ObfuscatedName("ag")
@@ -86,140 +86,140 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
    int[] countobj;
    @ObfuscatedName("ai")
    @ObfuscatedGetter(
-      intValue = -629230839
+           intValue = -629230839
    )
    int maleModel2;
    @ObfuscatedName("aj")
    @ObfuscatedGetter(
-      intValue = 2003146835
+           intValue = 2003146835
    )
    public int note;
    @ObfuscatedName("ak")
    @ObfuscatedGetter(
-      intValue = -1320032129
+           intValue = -1320032129
    )
    int femaleModel2;
    @ObfuscatedName("al")
    @ObfuscatedGetter(
-      intValue = -472240431
+           intValue = -472240431
    )
    int femaleModel;
    @ObfuscatedName("am")
    @ObfuscatedGetter(
-      intValue = 1142570821
+           intValue = 1142570821
    )
    int maleHeadModel2;
    @ObfuscatedName("an")
    @ObfuscatedGetter(
-      intValue = 839022773
+           intValue = 839022773
    )
    int femaleOffset;
    @ObfuscatedName("ao")
    @ObfuscatedGetter(
-      intValue = 708775895
+           intValue = 708775895
    )
    int maleOffset;
    @ObfuscatedName("ap")
    public String[] inventoryActions;
    @ObfuscatedName("aq")
    @ObfuscatedGetter(
-      intValue = 2070739727
+           intValue = 2070739727
    )
    int maleHeadModel;
    @ObfuscatedName("as")
    @ObfuscatedGetter(
-      intValue = -1653428101
+           intValue = -1653428101
    )
    int maleModel1;
    @ObfuscatedName("at")
    @ObfuscatedGetter(
-      intValue = -251593053
+           intValue = -251593053
    )
    int resizeZ;
    @ObfuscatedName("au")
    @ObfuscatedGetter(
-      intValue = 146352651
+           intValue = 146352651
    )
    int resizeX;
    @ObfuscatedName("av")
    @ObfuscatedGetter(
-      intValue = -1870487091
+           intValue = -1870487091
    )
    int femaleHeadModel2;
    @ObfuscatedName("aw")
    public boolean isMembersOnly;
    @ObfuscatedName("ax")
    @ObfuscatedGetter(
-      intValue = -1611629547
+           intValue = -1611629547
    )
    int maleModel;
    @ObfuscatedName("ay")
    @ObfuscatedGetter(
-      intValue = -922094347
+           intValue = -922094347
    )
    public int noteTemplate;
    @ObfuscatedName("az")
    @ObfuscatedGetter(
-      intValue = -187431889
+           intValue = -187431889
    )
    public int price;
    @ObfuscatedName("bc")
    @ObfuscatedGetter(
-      intValue = -1887741169
+           intValue = -1887741169
    )
    public int placeholderTemplate;
    @ObfuscatedName("bd")
    @ObfuscatedGetter(
-      intValue = 850095651
+           intValue = 850095651
    )
    public int team;
    @ObfuscatedName("bh")
    @ObfuscatedGetter(
-      intValue = 807356389
+           intValue = 807356389
    )
    public int contrast;
    @ObfuscatedName("bj")
    @ObfuscatedGetter(
-      intValue = 1578768163
+           intValue = 1578768163
    )
    int unnotedId;
    @ObfuscatedName("bm")
    @ObfuscatedSignature(
-      signature = "Llb;"
+           signature = "Llb;"
    )
    IterableNodeHashTable params;
    @ObfuscatedName("bs")
    @ObfuscatedGetter(
-      intValue = -407908075
+           intValue = -407908075
    )
    int notedId;
    @ObfuscatedName("bv")
    public boolean isTradable;
    @ObfuscatedName("bx")
    @ObfuscatedGetter(
-      intValue = 427704773
+           intValue = 427704773
    )
    public int ambient;
    @ObfuscatedName("bz")
    @ObfuscatedGetter(
-      intValue = -1594376835
+           intValue = -1594376835
    )
    public int placeholder;
    public int shiftClickActionIndex;
    public int modelOverride;
    @ObfuscatedName("d")
    @ObfuscatedGetter(
-      intValue = -1211123861
+           intValue = -1211123861
    )
    public int zan2d;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
-      intValue = -512556695
+           intValue = -512556695
    )
    int model;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
-      intValue = 850273909
+           intValue = 850273909
    )
    public int xan2d;
    @ObfuscatedName("g")
@@ -228,17 +228,17 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
    short[] retextureTo;
    @ObfuscatedName("j")
    @ObfuscatedGetter(
-      intValue = 1701459647
+           intValue = 1701459647
    )
    public int yan2d;
    @ObfuscatedName("k")
    @ObfuscatedGetter(
-      intValue = 992637627
+           intValue = 992637627
    )
    public int offsetY2d;
    @ObfuscatedName("l")
    @ObfuscatedGetter(
-      intValue = -973833067
+           intValue = -973833067
    )
    public int offsetX2d;
 
@@ -292,8 +292,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("p")
    @ObfuscatedSignature(
-      signature = "(Lit;Lit;B)V",
-      garbageValue = "126"
+           signature = "(Lit;Lit;B)V",
+           garbageValue = "126"
    )
    void method4552(ItemDefinition var1, ItemDefinition var2) {
       this.model = var1.model;
@@ -315,8 +315,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("q")
    @ObfuscatedSignature(
-      signature = "(Lit;Lit;S)V",
-      garbageValue = "-15779"
+           signature = "(Lit;Lit;S)V",
+           garbageValue = "-15779"
    )
    void method4532(ItemDefinition var1, ItemDefinition var2) {
       this.model = var1.model;
@@ -358,8 +358,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("r")
    @ObfuscatedSignature(
-      signature = "(Lkl;IB)V",
-      garbageValue = "7"
+           signature = "(Lkl;IB)V",
+           garbageValue = "7"
    )
    void method4579(Buffer var1, int var2) {
       if(var2 == 1) {
@@ -382,6 +382,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
          if(this.offsetY2d > 32767) {
             this.offsetY2d -= 65536;
          }
+      } else if (var2 == 9) {
+         var1.readString();
       } else if(var2 == 11) {
          this.isStackable = 1;
       } else if(var2 == 12) {
@@ -442,6 +444,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
             this.maleHeadModel2 = var1.readUnsignedShort();
          } else if(var2 == 93) {
             this.femaleHeadModel2 = var1.readUnsignedShort();
+         } else if (var2 == 94) {
+            var1.readUnsignedShort();
          } else if(var2 == 95) {
             this.zan2d = var1.readUnsignedShort();
          } else if(var2 == 97) {
@@ -485,8 +489,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("s")
    @ObfuscatedSignature(
-      signature = "(IIB)I",
-      garbageValue = "59"
+           signature = "(IIB)I",
+           garbageValue = "59"
    )
    public int getParam(int index, int defaultInt) {
       return HealthBar.getParam(this.params, index, defaultInt);
@@ -494,8 +498,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("u")
    @ObfuscatedSignature(
-      signature = "(Lkl;B)V",
-      garbageValue = "32"
+           signature = "(Lkl;B)V",
+           garbageValue = "32"
    )
    void method4527(Buffer var1) {
       while(true) {
@@ -510,8 +514,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("v")
    @ObfuscatedSignature(
-      signature = "(B)V",
-      garbageValue = "1"
+           signature = "(B)V",
+           garbageValue = "1"
    )
    void method4528() {
       this.post();
@@ -519,8 +523,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("x")
    @ObfuscatedSignature(
-      signature = "(ZB)Z",
-      garbageValue = "100"
+           signature = "(ZB)Z",
+           garbageValue = "100"
    )
    public final boolean method4556(boolean var1) {
       int var2 = this.maleHeadModel;
@@ -548,8 +552,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("y")
    @ObfuscatedSignature(
-      signature = "(IB)Ldw;",
-      garbageValue = "-102"
+           signature = "(IB)Ldw;",
+           garbageValue = "-102"
    )
    public final ModelData method4534(int var1) {
       int var3;
@@ -593,8 +597,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("a")
    @ObfuscatedSignature(
-      signature = "(ZI)Z",
-      garbageValue = "-94789059"
+           signature = "(ZI)Z",
+           garbageValue = "-94789059"
    )
    public final boolean method4537(boolean var1) {
       int var2 = this.maleModel;
@@ -628,8 +632,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("c")
    @ObfuscatedSignature(
-      signature = "(IB)Lit;",
-      garbageValue = "23"
+           signature = "(IB)Lit;",
+           garbageValue = "23"
    )
    public ItemDefinition method4559(int var1) {
       if(this.countobj != null && var1 > 1) {
@@ -664,7 +668,7 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
    }
 
    @ObfuscatedSignature(
-      signature = "(II)Ldh;"
+           signature = "(II)Ldh;"
    )
    public final Model copy$getModel(int var1, int var2) {
       if(this.countobj != null && var1 > 1) {
@@ -797,8 +801,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("e")
    @ObfuscatedSignature(
-      signature = "(ZB)Ldw;",
-      garbageValue = "22"
+           signature = "(ZB)Ldw;",
+           garbageValue = "22"
    )
    public final ModelData method4538(boolean var1) {
       int var2 = this.maleModel;
@@ -853,8 +857,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("f")
    @ObfuscatedSignature(
-      signature = "(ILjava/lang/String;I)Ljava/lang/String;",
-      garbageValue = "570180688"
+           signature = "(ILjava/lang/String;I)Ljava/lang/String;",
+           garbageValue = "570180688"
    )
    public String getParam(int index, String defaultString) {
       return class94.method2216(this.params, index, defaultString);
@@ -862,8 +866,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
-      signature = "(ZI)Ldw;",
-      garbageValue = "1830989293"
+           signature = "(ZI)Ldw;",
+           garbageValue = "1830989293"
    )
    public final ModelData method4540(boolean var1) {
       int var2 = this.maleHeadModel;
@@ -902,7 +906,7 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("i")
    @ObfuscatedSignature(
-      signature = "(II)Ldh;"
+           signature = "(II)Ldh;"
    )
    public final Model method4575(int var1, int var2) {
       return this.modelOverride == -1?(Model)this.copy$getModel(var1, var2):(Model)ViewportMouse.client.getItemDefinition(this.modelOverride).getModel(var1);
@@ -915,8 +919,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("m")
    @ObfuscatedSignature(
-      signature = "(Lit;Lit;I)V",
-      garbageValue = "-2143595462"
+           signature = "(Lit;Lit;I)V",
+           garbageValue = "-2143595462"
    )
    void method4533(ItemDefinition var1, ItemDefinition var2) {
       this.model = var1.model;
@@ -939,8 +943,8 @@ public class ItemDefinition extends DualNode implements RSItemDefinition {
 
    @ObfuscatedName("v")
    @ObfuscatedSignature(
-      signature = "(B)Lbl;",
-      garbageValue = "66"
+           signature = "(B)Lbl;",
+           garbageValue = "66"
    )
    static ClientPreferences method4600() {
       AccessFile var0 = null;
