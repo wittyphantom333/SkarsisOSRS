@@ -22,6 +22,7 @@ import io.ruin.model.item.actions.impl.ItemSet;
 import io.ruin.model.item.actions.impl.ItemUpgrading;
 import io.ruin.model.item.actions.impl.Pet;
 import io.ruin.model.item.actions.impl.combine.ItemCombining;
+import io.ruin.model.item.containers.collectionlog.CollectionLogDataSet;
 import io.ruin.model.item.listeners.IncomingHitListener;
 import io.ruin.model.item.listeners.OutgoingHitListener;
 import io.ruin.model.map.ground.GroundItemAction;
@@ -44,6 +45,7 @@ import static io.ruin.cache.ItemID.BLOOD_FRAGMENT;
 public class ItemDef {
 
     public static Map<Integer, ItemDef> cached = Maps.newConcurrentMap();
+    public CollectionLogDataSet collectionLogDataSet;
     private boolean currency;
     private boolean currencyChecked;
 
@@ -138,6 +140,12 @@ public class ItemDef {
     public Achievement achievement;
     public boolean achievementReqIsIronmanOnly;
 
+    public int soundid;
+
+    public int getSoundId() {
+        return soundid;
+    }
+
     /**
      * Custom data
      */
@@ -227,6 +235,7 @@ public class ItemDef {
     public boolean free;
 
     public boolean coxItem;
+
 
     /**
      * Cache data
@@ -577,7 +586,9 @@ public class ItemDef {
             yof2d = buffer.readUnsignedShort();
             if(yof2d > 32767)
                 yof2d -= 65536;
-        } else if(opcode == 11)
+        } else if(opcode == 9)
+            buffer.readString();
+        else if(opcode == 11)
             stackable = true;
         else if(opcode == 12)
             value = buffer.readInt();
@@ -629,6 +640,8 @@ public class ItemDef {
             anInt1501 = buffer.readUnsignedShort();
         else if(opcode == 93)
             anInt1503 = buffer.readUnsignedShort();
+        else if(opcode == 94)
+            buffer.readUnsignedShort();
         else if(opcode == 95)
             zan2d = buffer.readUnsignedShort();
         else if(opcode == 97)

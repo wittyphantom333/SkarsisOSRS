@@ -162,14 +162,14 @@ public class ObjectDef {
             options[1] = "Practice";
         } else if (id == 32758) {
             //rfd chest
-            name = "Loyalty Chest";
-            options[0] = "Loot";
-            options[1] = "About";
+            name = "Cosmetic Chest";
+            options[0] = "Open";
+            options[1] = null;
             options[2] = null;
             options[3] = null;
             options[4] = null;
         } else if(id == 32759) {
-            name = "Loyalty Chest";
+            name = "Cosmetic Chest";
             options[0] = null;
             options[1] = null;
             options[2] = null;
@@ -210,7 +210,7 @@ public class ObjectDef {
             varpBitId = -1;
         } else if (id == PORTAL_OF_CHAMPIONS) {
             //home teleport portal - where is this portal even used on real rs?
-            name = "Kronos Teleporter";
+            name = "Rift Teleporter";
             options[0] = "Teleport";
             options[1] = "Teleport-previous";
         } else if (id == 25203) {
@@ -257,8 +257,6 @@ public class ObjectDef {
             options[1] = "Information";
         } else if(id == 31622) {
             name = "Ket'ian Wilderness Boss Portal";
-        } else if(id == 31621) {
-            name = "Wilderness Portal";
         } else if(id == 31626) {
             name = "Tournament Entrance";
         } else if(id == 32573) {
@@ -286,7 +284,7 @@ public class ObjectDef {
         } else if (id >= 26502 && id <= 26505) { // GWD boss doors
             options[1] = "Instance";
             options[2] = "Peek";
-        } else if (id == 4407) { // pvm instance portal
+        } else if (id == 31621) { // pvm instance portal
             name = "Boss instance portal";
             options[0] = "Use";
         } else if(id == 19038) { //christmas tree
@@ -438,6 +436,8 @@ public class ObjectDef {
             }
         } else if (i == 60) //this was removed
             mapMarkerId = in.readUnsignedShort();
+        else if (i == 61)
+            in.readUnsignedShort();
         else if (i == 62)
             verticalFlip = true;
         else if (i == 64)
@@ -498,6 +498,10 @@ public class ObjectDef {
                 anIntArray1597[i_16_] = in.readUnsignedShort();
         } else if (i == 81)
             anInt1569 = in.readUnsignedByte() * 256;
+        else if (i == 82)
+            in.readUnsignedShort();
+        else if (i == 83)
+            in.readUnsignedShort();
     }
 
     public boolean isClippedDecoration() {

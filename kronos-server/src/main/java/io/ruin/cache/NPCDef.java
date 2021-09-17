@@ -25,6 +25,8 @@ public class NPCDef {
 
     public static Map<Integer, NPCDef> cached = Maps.newConcurrentMap();
 
+    public static NPCDef[] LOADED;
+
     public static void load() {
         IndexFile index = Server.fileStore.get(2);
         int size = index.getLastFileId(9) + 1;
@@ -159,6 +161,11 @@ public class NPCDef {
             name = "Donation Manager";
             options[0] = "Open-Shop";
             options[2] = "Claim-purchases";
+        } else if(id == 5567) {
+            name = "Blood Money Shop";
+            options[0] = "melee";
+            options[1] = "magic";
+            options[2] = "ranged";
         } else if(id == 306) {
             name = World.type.getWorldName() + " Expert";
             options[0] = "Talk-to";
@@ -178,6 +185,13 @@ public class NPCDef {
             options[0] = "Buy-items";
             options[2] = "Sell-items";
             options[3] = "Sets";
+            options[4] = null;
+        } else if (id == 2883) {
+            /* Donator Range Shop */
+            name = "Donator Range Shop";
+            options[0] = "Trade";
+            options[2] = null;
+            options[3] = null;
             options[4] = null;
         } else if (id == 5523) {
             /* Gambling man */
@@ -360,6 +374,9 @@ public class NPCDef {
             walkBackAnimation = var1.readUnsignedShort();
             walkLeftAnimation = var1.readUnsignedShort();
             walkRightAnimation = var1.readUnsignedShort();
+        }
+        else if (var2 == 18) {
+            var1.readUnsignedShort();
         } else if(var2 >= 30 && var2 < 35) {
             options[var2 - 30] = var1.readString();
             if(options[var2 - 30].equalsIgnoreCase("Hidden"))
