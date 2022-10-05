@@ -681,15 +681,6 @@
     "walkRange": 2
   },
   {
-    "name": "Stuart the Rat",
-    "id": 15009,
-    "x": 2019,
-    "y": 3575,
-    "z": 0,
-    "direction": "S",
-    "walkRange": 8
-  },
-  {
     "name": "50% Luke",
     "id": 604,
     "x": 2018,
