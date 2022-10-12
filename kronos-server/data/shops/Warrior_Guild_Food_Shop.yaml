@@ -1,0 +1,26 @@
+---
+identifier: "41d6-4d0a-11ddf699-8c05-5b3c721b0849"
+title: "Warrior Guild Food Shop"
+currency: "COINS"
+accessibleByIronMan: true
+canSellToStore: false
+generalStore: false
+restockRules:
+  restockTicks: 2
+  restockPerTick: 1000
+defaultStock:
+  - id: 333
+    amount: 10
+    price: 12
+  - id: 365
+    amount: 10
+    price: 48
+  - id: 2289
+    amount: 5
+    price: 48
+  - id: 6705
+    amount: 10
+    price: 9
+  - id: 2003
+    amount: 10
+    price: 24

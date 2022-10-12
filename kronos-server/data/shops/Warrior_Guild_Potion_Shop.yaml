@@ -1,0 +1,20 @@
+---
+identifier: "41d6-11ddf699-4d0a-8c05-5b3c721b0849"
+title: "Warrior Guild Potion Shop"
+currency: "COINS"
+accessibleByIronMan: true
+canSellToStore: false
+generalStore: false
+restockRules:
+  restockTicks: 2
+  restockPerTick: 1000
+defaultStock:
+  - id: 115
+    amount: 10
+    price: 15
+  - id: 121
+    amount: 10
+    price: 14
+  - id: 133
+    amount: 10
+    price: 144
