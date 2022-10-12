@@ -24,7 +24,10 @@
     "y": 3551,
     "z": 0,
     "direction": "S",
-    "walkRange": 2
+    "walkRange": 2,
+    "shopOptions": {
+      "trade": "41d6-11ddf699-4d0a-8c05-5b3c721b0849"
+    }
   },
   {
     "name": "Ajjat",
@@ -54,7 +57,10 @@
     "y": 3551,
     "z": 0,
     "direction": "S",
-    "walkRange": 3
+    "walkRange": 3,
+    "shopOptions": {
+      "trade": "41d6-4d0a-11ddf699-8c05-5b3c721b0849"
+    }
   },
   {
     "name": "Jade",
