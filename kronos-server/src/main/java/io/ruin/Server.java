@@ -157,7 +157,7 @@ public class Server extends ServerWrapper {
         if (!OfflineMode.enabled) {
             println("Connecting to SQL databases...");
 
-            siteDb = new Database(properties.getProperty("database_host"), "kronos", properties.getProperty("database_user"), properties.getProperty("database_password"));
+            /* siteDb = new Database(properties.getProperty("database_host"), "kronos", properties.getProperty("database_user"), properties.getProperty("database_password"));
             gameDb = new Database(properties.getProperty("database_host"), "game", properties.getProperty("database_user"), properties.getProperty("database_password"));
             forumDb = new Database(properties.getProperty("database_host"), "community", properties.getProperty("database_user"), properties.getProperty("database_password"));
 
@@ -167,7 +167,7 @@ public class Server extends ServerWrapper {
                         logError("Database error", t);
                     System.exit(1);
                 }
-            });
+            }); */
 
             Loggers.clearOnlinePlayers(World.id);
             LatestUpdate.fetch();
