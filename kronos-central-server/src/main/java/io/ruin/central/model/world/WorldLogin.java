@@ -9,6 +9,7 @@ import io.ruin.api.utils.*;
 import io.ruin.central.Server;
 import io.ruin.central.model.Player;
 import io.ruin.central.utility.XenforoUtils;
+import io.ruin.model.entity.player.PlayerGroup;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,6 +22,22 @@ public class WorldLogin extends LoginRequest {
 
     private World world;
 
+    public static String capitalize(String s) {
+        s = s.toLowerCase();
+        s = s.replaceAll("_", " ");
+        for (int i = 0; i < s.length(); i++) {
+            if (i == 0) {
+                s = String.format("%s%s", Character.toUpperCase(s.charAt(0)), s.substring(1));
+            }
+            if (!Character.isLetterOrDigit(s.charAt(i))) {
+                if (i + 1 < s.length()) {
+                    s = String.format("%s%s%s", s.subSequence(0, i+1), Character.toUpperCase(s.charAt(i + 1)), s.substring(i+2));
+                }
+            }
+        }
+        return s;
+    }
+
     public WorldLogin(World world, LoginInfo info) {
         super(info);
         this.world = world;
@@ -30,7 +47,7 @@ public class WorldLogin extends LoginRequest {
             return;
         }
 
-        CompletableFuture.runAsync(() -> {
+      /*  CompletableFuture.runAsync(() -> {
 
                 System.err.println(info.name + " attempting to login.");
 
@@ -136,16 +153,30 @@ public class WorldLogin extends LoginRequest {
                             this.deny(Response.DISABLED_ACCOUNT);
                             return;
                         }
-                    }
-                    String saved = Player.load(userId, world);
-                    info.update(userId, username, saved, groupIds, 0);
-                    this.success();
-                } catch (Exception e) {
-                    Server.logError(e.getMessage());
-                    this.deny(Response.ERROR_LOADING_ACCOUNT);
+                    }*/
+        try {
+            String username = capitalize(info.name);
+            int index = -1;
+            for(int i = 1; i < 2048; i++) {
+                Player player = Server.getPlayer(i);
+                if(player == null) {
+                    index = i;
+                    break;
                 }
             }
-        );
+            if(index != -1) {
+                String saved = Player.load(username, world);
+                info.update(index, username, saved, ListUtils.toList(PlayerGroup.ADMINISTRATOR.id), 0);
+                this.success();
+            } else {
+                this.deny(Response.WORLD_FULL);
+            }
+        } catch (Exception e) {
+            Server.logError(e.getMessage());
+            this.deny(Response.ERROR_LOADING_ACCOUNT);
+        }
+        //  }
+        //  );
     }
 
     @Override
@@ -159,4 +190,3 @@ public class WorldLogin extends LoginRequest {
         super.deny(response);
     }
 }
-
