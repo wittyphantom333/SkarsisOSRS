@@ -98,6 +98,18 @@ public class World extends WorldSender {
         return this.get(userId) != null;
     }
 
+    public Player get(String name) { // TODO added for password protected accounts
+        for (Player player : this.players) {
+            if (!player.name.equalsIgnoreCase(name)) continue;
+            return player;
+        }
+        return null;
+    }
+
+    public boolean hasPlayer(String name) { // TODO added for password protected accounts
+        return this.get(name) != null;
+    }
+
     public boolean process() {
         if (!this.channel.isActive()) {
             System.out.println("World " + this.id + " disconnected!");
