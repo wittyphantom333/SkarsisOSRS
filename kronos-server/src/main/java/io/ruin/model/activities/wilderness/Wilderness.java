@@ -55,7 +55,7 @@ public class Wilderness {
         if(player.wildernessLevel == -1 || player.getMovement().hasMoved())
             player.wildernessLevel = getLevel(player.getPosition());
         player.getBountyHunter().checkActive();
-        return player.wildernessLevel > 0;
+        return player.wildernessLevel > -5000; //0 //TODO this creates pvp global
     }
 
     private static void entered(Player player) {
@@ -137,11 +137,11 @@ public class Wilderness {
             }
         }
 
-        if(pTarget.wildernessLevel == 0) {
+        /*if(pTarget.wildernessLevel == 0) {
             if(message)
                 player.sendMessage("You can't attack players who aren't in the Wilderness.");
             return false;
-        }
+        }*/ //TODO
 
         if (isAtWildernessLimitForIP(player)) {
             if(message)
@@ -150,9 +150,9 @@ public class Wilderness {
         }
 
         if(pTarget == player.getBountyHunter().target) {
-            if (Math.abs(player.getCombat().getLevel() - pTarget.getCombat().getLevel()) > 5) {
+            if (Math.abs(player.getCombat().getLevel() - pTarget.getCombat().getLevel()) > 126) {
                 if (message)
-                    player.sendMessage("You must be within 5 combat levels of your target to attack them.");
+                    player.sendMessage("You must be within 'x' combat levels of your target to attack them.");
                 return false;
             }
             return true;
@@ -183,11 +183,11 @@ public class Wilderness {
         int combatLevel = player.getCombat().getLevel();
         int targetWildernessLevel = pTarget.wildernessLevel;
         int targetCombatLevel = pTarget.getCombat().getLevel();
-        if(!((combatLevel + wildernessLevel >= targetCombatLevel && combatLevel - wildernessLevel <= targetCombatLevel) && (targetCombatLevel + targetWildernessLevel) >= combatLevel && targetCombatLevel - targetWildernessLevel <= combatLevel)) {
+        /*if(!((combatLevel + wildernessLevel >= targetCombatLevel && combatLevel - wildernessLevel <= targetCombatLevel) && (targetCombatLevel + targetWildernessLevel) >= combatLevel && targetCombatLevel - targetWildernessLevel <= combatLevel)) {
             if(message)
                 player.sendMessage("Your combat level difference is to high to attack from here. Please move deeper into the wilderness");
             return false;
-        }
+        }*/
 
         return EdgevilleBlacklist.canAttack(player, pTarget);
     }
@@ -199,7 +199,7 @@ public class Wilderness {
         int count = 0;
 
         for (Player others : Wilderness.players) {
-            if (player.getIpInt() == others.getIpInt() && ++count >= 2) {
+            if (player.getIpInt() == others.getIpInt() && ++count >= 5) {
                 return true;
             }
         }
@@ -272,6 +272,10 @@ public class Wilderness {
     );
 
     static {
+        // TODO add safezones
+        setLevels(new Bounds(1990, 3520, 2110, 3650, -1), -10000); //HOME
+        setLevels(new Bounds(3107, 3511, 3111, 3517, 2), -10000); //TOURNAMENT LOBBY
+        
         //Set default areas
         setLevels(new Bounds(2944, 3525, 3391, 4351, -1), y -> ((y - 3520) / 8) + 1); //main
         setLevels(new Bounds(3008, 10112, 3071, 10175, -1), y -> ((y - 9920) / 8) - 1); //gwd
