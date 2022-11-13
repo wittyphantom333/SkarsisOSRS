@@ -69,6 +69,12 @@ public class PlayerLogin extends LoginRequest {
                 deny(Response.ERROR_LOADING_ACCOUNT);
                 return;
             }
+                      if(player.getPassword() != null) {
+                if (!info.password.equalsIgnoreCase(player.getPassword())) {
+                    deny(Response.INVALID_LOGIN);
+                    return;
+                }
+            }
 
             player.setIndex(index);
             player.init(info);
