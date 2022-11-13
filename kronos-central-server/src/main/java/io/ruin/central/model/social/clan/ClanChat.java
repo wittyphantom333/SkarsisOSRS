@@ -18,19 +18,19 @@ public class ClanChat extends ClanContainer {
 
     public SocialList parent;
     private String owner;
-    @Expose private int lastId = -1;
-    @Expose public String name;
-    @Expose public SocialRank enterRank = null;
-    @Expose public SocialRank talkRank = null;
-    @Expose public SocialRank kickRank = SocialRank.CORPORAL;
+    @ Expose private String lastName = "";
+    @ Expose public String name;
+    @ Expose public SocialRank enterRank = null;
+    @ Expose public SocialRank talkRank = null;
+    @ Expose public SocialRank kickRank = SocialRank.CORPORAL;
     public ClanChat active;
     private boolean joining;
     private HashMap<Integer, Long> kicked;
 
     public void init(Player player) {
         this.sendSettings(player);
-        if (this.lastId != -1) {
-            this.join(player, this.lastId);
+        if (!this.lastName.equals("")) {
+            this.join(player, this.lastName);
         }
     }
 
@@ -50,7 +50,7 @@ public class ClanChat extends ClanContainer {
         OutBuffer out = settingsOnly ? this.getSettingsBuffer() : this.getChannelBuffer();
         for (int i = 0; i < this.ccMembersCount; ++i) {
             SocialMember member = this.ccMembers[i];
-            Player pMember = Server.getPlayer(member.userId);
+            Player pMember = Server.getPlayer(member.name);
             if (pMember == null) continue;
             pMember.write(out);
         }
@@ -59,7 +59,7 @@ public class ClanChat extends ClanContainer {
     public void disable() {
         for (int i = 0; i < this.ccMembersCount; ++i) {
             SocialMember member = this.ccMembers[i];
-            Player pMember = Server.getPlayer(member.userId);
+            Player pMember = Server.getPlayer(member.name);
             if (pMember == null) continue;
             pMember.getClanChat().setActive(pMember, null);
             pMember.sendMessage("The clan chat channel you were in has been disabled.", 11);
@@ -85,44 +85,50 @@ public class ClanChat extends ClanContainer {
                 this.active.update(false);
             }
         } else {
-            this.lastId = newActive.parent.userId;
+            this.lastName = newActive.parent.username;
             newActive.update(false);
         }
         this.active = newActive;
     }
 
-    public void join(Player player, Object search) {
-        if (this.joining) {
-            player.sendMessage("You are already joining a channel, please wait...", 11);
-            return;
+    public static String capitalize(String s) {
+        s = s.toLowerCase();
+        s = s.replaceAll("_", " ");
+        for (int i = 0; i < s.length(); i++) {
+            if (i == 0) {
+                s = String.format("%s%s", Character.toUpperCase(s.charAt(0)), s.substring(1));
+            }
+            if (!Character.isLetterOrDigit(s.charAt(i))) {
+                if (i + 1 < s.length()) {
+                    s = String.format("%s%s%s", s.subSequence(0, i+1), Character.toUpperCase(s.charAt(i + 1)), s.substring(i+2));
+                }
+            }
         }
-        player.sendMessage("Attempting to join channel...", 11);
-        XenUser.forObj(search, user -> {
-            this.join(player, user);
-            this.joining = false;
-        });
+        return s;
     }
 
-    private void join(Player player, XenUser user) {
-        if (user == null) {
+
+    public void join(Player player, String name) {
+        name = capitalize(name);
+      /*  if (user == null) {
             player.sendMessage("Unable to join channel - social server offline.", 11);
             return;
         }
         if (user.name == null) {
             player.sendMessage("The channel you tried to join does not exist.", 11);
             return;
-        }
+        }*/
         if (this.active != null) {
             player.sendMessage("You are already in a channel!", 11);
             return;
         }
-        SocialList ownerList = SocialList.get(user.id);
-        if (ownerList.isIgnored(player.userId)) {
+        SocialList ownerList = SocialList.get(name);
+        if (ownerList.isIgnored(player.name)) {
             player.sendMessage("You are blocked from joining this channel.");
             return;
         }
         ClanChat joinCc = ownerList.cc;
-        joinCc.owner = user.name;
+        joinCc.owner = name;
         if (joinCc.addMember(player)) {
             this.setActive(player, joinCc);
             player.sendMessage("Now talking in clan chat channel " + joinCc.name + ".", 11);
@@ -134,7 +140,7 @@ public class ClanChat extends ClanContainer {
         if (this.active == null) {
             return;
         }
-        this.lastId = logout ? this.active.parent.userId : -1;
+        this.lastName = logout ? this.active.parent.username : "";
         this.setActive(player, null);
     }
 
@@ -205,7 +211,7 @@ public class ClanChat extends ClanContainer {
         message = StringUtils.fixCaps(message);
         for (int i = 0; i < this.ccMembersCount; ++i) {
             SocialMember member = this.ccMembers[i];
-            Player pMember = Server.getPlayer(member.userId);
+            Player pMember = Server.getPlayer(member.name);
             if (pMember == null) continue;
             pMember.write(this.getMessageBuffer(sender.name, rankId, message));
         }
@@ -240,7 +246,7 @@ public class ClanChat extends ClanContainer {
             SocialMember member = this.ccMembers[i];
             out.addString(member.name);
             out.addShort(member.worldId);
-            out.addByte(this.getRankId(member.userId));
+            out.addByte(this.getRankId(member.name));
             out.addByte(0);
         }
         return out;
@@ -259,25 +265,25 @@ public class ClanChat extends ClanContainer {
     }
 
     private SocialRank getRank(Player player) {
-        if (player.userId == this.parent.userId) {
+        if (player.name.equalsIgnoreCase(this.parent.username)) {
             return SocialRank.OWNER;
         }
         if (player.admin) {
             return SocialRank.ADMIN;
         }
-        SocialMember friend = this.parent.getFriend(player.userId);
+        SocialMember friend = this.parent.getFriend(player.name);
         return friend == null ? null : friend.rank;
     }
 
-    private int getRankId(int userId) {
-        if (userId == this.parent.userId) {
+    private int getRankId(String username) {
+        if (username.equalsIgnoreCase(this.parent.username)) {
             return SocialRank.OWNER.id;
         }
-        Player player = Server.getPlayer(userId);
+        Player player = Server.getPlayer(username);
         if (player != null && player.admin) {
             return SocialRank.ADMIN.id;
         }
-        SocialMember friend = this.parent.getFriend(userId);
+        SocialMember friend = this.parent.getFriend(player.name);
         return friend == null ? -1 : friend.rank.id;
     }
 
@@ -289,4 +295,3 @@ public class ClanChat extends ClanContainer {
         return reqRank == null || checkRank != null && checkRank.id >= reqRank.id;
     }
 }
-
