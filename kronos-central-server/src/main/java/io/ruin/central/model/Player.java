@@ -30,7 +30,7 @@ public class Player {
         this.name = name;
         this.admin = groupIds.contains(3);
         this.world = world;
-        this.socialList = SocialList.get(userId);
+        this.socialList = SocialList.get(name);
     }
 
     public ClanChat getClanChat() {
@@ -106,7 +106,7 @@ public class Player {
                 out.skip(1);
             }
         }
-       this.write(out);
+        this.write(out);
     }
 
     public void sendPM(String toUsername, String message) {
@@ -121,10 +121,10 @@ public class Player {
         }
         out.addByte(fromRank);
         Huffman.encrypt(out, message);
-       this.write(out);
+        this.write(out);
     }
 
- public static String load(String username, World world) throws IOException {
+    public static String load(String username, World world) throws IOException {
         File file = Player.getSaveFile(username, world);
         return file.exists() ? new String(Files.readAllBytes(file.toPath())) : "";
     }
@@ -149,4 +149,3 @@ public class Player {
         return new File(System.getProperty("user.home") + "/Desktop/Kronos/_saved/players/" + world.stage.name().toLowerCase() + "/" + world.type.name().toLowerCase() + "/" + username + ".json");
     }
 }
-
