@@ -126,7 +126,7 @@ public class Player extends PlayerAttributes {
 
     private String name;
 
-    private String password;
+     @ Expose private String password;
 
     public int getUserId() {
         return userId;
