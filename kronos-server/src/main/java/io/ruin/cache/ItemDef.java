@@ -742,6 +742,16 @@ public class ItemDef {
         return 0;
     }
 
+    public int getPrice() {
+        if (value == 0) {
+            value = 1;
+        }
+        if (value < highAlchValue) {
+            return highAlchValue;
+        }
+        return value;
+    }
+
     /**
      * Predicate
      */

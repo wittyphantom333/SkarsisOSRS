@@ -4,14 +4,15 @@ import com.google.gson.annotations.Expose;
 import io.netty.channel.Channel;
 import io.ruin.Server;
 import io.ruin.api.protocol.login.LoginInfo;
-import io.ruin.api.utils.*;
+import io.ruin.api.utils.ISAACCipher;
+import io.ruin.api.utils.NumberUtils;
 import io.ruin.api.utils.Random;
+import io.ruin.api.utils.ServerWrapper;
 import io.ruin.cache.Color;
 import io.ruin.cache.InterfaceDef;
 import io.ruin.cache.Varp;
 import io.ruin.event.GameEventProcessor;
 import io.ruin.model.World;
-import io.ruin.model.activities.deadman.DeadmanRaidManager;
 import io.ruin.model.activities.duelarena.Duel;
 import io.ruin.model.activities.duelarena.DuelArena;
 import io.ruin.model.activities.wilderness.BountyHunter;
@@ -26,7 +27,10 @@ import io.ruin.model.entity.shared.masks.*;
 import io.ruin.model.inter.Interface;
 import io.ruin.model.inter.InterfaceHandler;
 import io.ruin.model.inter.InterfaceType;
-import io.ruin.model.inter.dialogue.*;
+import io.ruin.model.inter.dialogue.Dialogue;
+import io.ruin.model.inter.dialogue.MessageDialogue;
+import io.ruin.model.inter.dialogue.OptionsDialogue;
+import io.ruin.model.inter.dialogue.YesNoDialogue;
 import io.ruin.model.inter.dialogue.skill.SkillDialogue;
 import io.ruin.model.inter.handlers.TeleportInterface;
 import io.ruin.model.inter.journal.presets.PresetCustom;
@@ -65,13 +69,13 @@ import io.ruin.services.Loggers;
 import io.ruin.services.XenGroup;
 import io.ruin.utility.CS2Script;
 import io.ruin.utility.TickDelay;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import static io.ruin.cache.ItemID.*;
 
@@ -151,7 +155,7 @@ public class Player extends PlayerAttributes {
      * Groups & Rank (Used to display client icons)
      */
     private boolean[] groups;
-			
+
     @ Expose private PlayerGroup primaryGroup;
 
     private PlayerGroup clientGroup; //the group displayed on clients
@@ -1456,24 +1460,24 @@ public class Player extends PlayerAttributes {
         tick();
 	setDeadmanSkull();
     }
-	/**	
-     * Set skull	
+	/**
+     * Set skull
      */
 
-	private void setDeadmanSkull() {	
-        int skull = -1;	
-        if (hasItem(new Item(13302))) {	
-            skull = 12;	
-        } else if (hasItem(new Item(13303))) {	
-            skull = 11;	
-        } else if (hasItem(new Item(13304))) {	
-            skull = 10;	
-        } else if (hasItem(new Item(13305))) {	
-            skull = 9;	
-        } else if (hasItem(new Item(13306))) {	
-            skull = 8;	
-        }	
-        getAppearance().setSkullIcon(skull);	
+	private void setDeadmanSkull() {
+        int skull = -1;
+        if (hasItem(new Item(13302))) {
+            skull = 12;
+        } else if (hasItem(new Item(13303))) {
+            skull = 11;
+        } else if (hasItem(new Item(13304))) {
+            skull = 10;
+        } else if (hasItem(new Item(13305))) {
+            skull = 9;
+        } else if (hasItem(new Item(13306))) {
+            skull = 8;
+        }
+        getAppearance().setSkullIcon(skull);
     }
 
     /**
@@ -1666,4 +1670,14 @@ public class Player extends PlayerAttributes {
         }
         onDialogueContinued = null;
     }
+
+    private DeadmanRaidManager deadmanRaidManager = new DeadmanRaidManager(this);
+    public DeadmanRaidManager getDeadmanRaidManager() {
+        return deadmanRaidManager;
+    }
+
+    public boolean hasItem(Item item) {
+        return getInventory().contains(item) || getBank().contains(item) || getEquipment().contains(item);
+    }
+
 }

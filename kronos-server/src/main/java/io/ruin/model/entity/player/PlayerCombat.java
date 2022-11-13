@@ -996,11 +996,6 @@ public class PlayerCombat extends Combat {
                     ItemContainer container = new ItemContainer();
                     container.init(43, true);
                     IKOD.forLostItem(player, killer, item -> {
-                        container.add(item);
-                    });
-                    killer.player.getDeadmanRaidManager().add(container);
-                    if (true) return;
-                    IKOD.forLostItem(player, killer, item -> {
                         ItemDef def = item.getDef();
                         if (pKiller != null && pKiller.hideFreeItems && def.free) {
                             return;
@@ -1025,8 +1020,9 @@ public class PlayerCombat extends Combat {
                         else if (pKiller.getGameMode().isIronMan())
                             new GroundItem(item).owner(player).position(player.getPosition()).diedToIron(player).spawn(1);
                         else
-                            new GroundItem(item).owner(pKiller).position(player.getPosition()).spawn();
+                            container.add(item);
                     });
+                    killer.player.getDeadmanRaidManager().add(container);
                 }
                 /**
                  * Drop bones (Keep after all other item drops!)
