@@ -27,6 +27,7 @@ import io.ruin.model.inter.handlers.TabCombat;
 import io.ruin.model.inter.journal.toggles.TargetOverlay;
 import io.ruin.model.inter.utils.Config;
 import io.ruin.model.item.Item;
+import io.ruin.model.item.ItemContainer;
 import io.ruin.model.item.actions.impl.TransformationRing;
 import io.ruin.model.item.actions.impl.chargable.*;
 import io.ruin.model.item.actions.impl.combine.SlayerHelm;
@@ -992,6 +993,13 @@ public class PlayerCombat extends Combat {
                 if (useDeathStorage) {
                     player.getDeathStorage().death(killer);
                 } else {
+                    ItemContainer container = new ItemContainer();
+                    container.init(43, true);
+                    IKOD.forLostItem(player, killer, item -> {
+                        container.add(item);
+                    });
+                    killer.player.getDeadmanRaidManager().add(container);
+                    if (true) return;
                     IKOD.forLostItem(player, killer, item -> {
                         ItemDef def = item.getDef();
                         if (pKiller != null && pKiller.hideFreeItems && def.free) {
