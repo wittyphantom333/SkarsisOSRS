@@ -267,6 +267,8 @@ public class Interface {
     public static final int FFA_CLAN_WARS = 199;
 
     public static final int DEATH_STORAGE = 602;
+    
+    public static final int DEADMAN_CHEST = 234;
 
     public static final int LAST_MAN_STANDING_SHRINE = 416;
 
