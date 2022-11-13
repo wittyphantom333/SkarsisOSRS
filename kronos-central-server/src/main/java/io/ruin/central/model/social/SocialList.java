@@ -17,12 +17,28 @@ import java.util.HashMap;
 
 public class SocialList extends SocialContainer {
 
-    public int userId;
+    public String username;
     private boolean sent;
-    @Expose public int privacy;
-    @Expose public ClanChat cc;
-    private static final HashMap<Integer, SocialList> LOADED = new HashMap();
+    @ Expose public int privacy;
+    @ Expose public ClanChat cc;
+    private static final HashMap<String, SocialList> LOADED = new HashMap();
     private static final File social_folder = new File("_saved/social/");
+
+    public static String capitalize(String s) {
+        s = s.toLowerCase();
+        s = s.replaceAll("_", " ");
+        for (int i = 0; i < s.length(); i++) {
+            if (i == 0) {
+                s = String.format("%s%s", Character.toUpperCase(s.charAt(0)), s.substring(1));
+            }
+            if (!Character.isLetterOrDigit(s.charAt(i))) {
+                if (i + 1 < s.length()) {
+                    s = String.format("%s%s%s", s.subSequence(0, i+1), Character.toUpperCase(s.charAt(i + 1)), s.substring(i+2));
+                }
+            }
+        }
+        return s;
+    }
 
     public void offline(Player player) {
         this.sent = false;
@@ -48,12 +64,12 @@ public class SocialList extends SocialContainer {
             for (SocialMember friend : this.friends) {
                 if (friend == null) continue;
                 int updatedWorldId = 0;
-                Player pFriend = Server.getPlayer(friend.userId);
+                Player pFriend = Server.getPlayer(friend.name);
                 if (pFriend != null) {
                     boolean hidden;
                     friend.checkName(pFriend);
-                    SocialList fList = SocialList.get(friend.userId);
-                    boolean bl = hidden = fList.privacy == 2 || fList.privacy == 1 && !fList.isFriend(this.userId) || fList.isIgnored(this.userId);
+                    SocialList fList = SocialList.get(friend.name);
+                    boolean bl = hidden = fList.privacy == 2 || fList.privacy == 1 && !fList.isFriend(this.username) || fList.isIgnored(this.username);
                     if (!hidden) {
                         updatedWorldId = pFriend.world.id;
                     }
@@ -67,7 +83,7 @@ public class SocialList extends SocialContainer {
         if (this.ignores != null) {
             for (SocialMember ignore : this.ignores) {
                 if (ignore == null) continue;
-                Player pIgnore = Server.getPlayer(ignore.userId);
+                Player pIgnore = Server.getPlayer(ignore.name);
                 if (pIgnore != null) {
                     ignore.checkName(pIgnore);
                 }
@@ -80,34 +96,37 @@ public class SocialList extends SocialContainer {
     }
 
     private void add(Player player, String name, boolean ignore) {
+        name = capitalize(name);
         String type = ignore ? "ignore" : "friend";
-        XenUser.forObj(name, user -> {
-                    if (user == null) {
+        // XenUser.forObj(name, user -> {
+             /*       if (user == null) {
                         player.sendMessage("Unable to add " + type + " - social server offline.");
                         return;
                     }
                     if (user.name == null) {
                         player.sendMessage("Unable to add " + type + " - unknown player.");
                         return;
-                    }
-                    SocialMember member = new SocialMember(user, ignore ? null : SocialRank.FRIEND);
-                    if (ignore) {
-                        this.addIgnore(member);
-                    } else if (this.addFriend(member) && this.cc.inClan(member.userId)) {
-                        this.cc.update(false);
-                    }
-                }
-        );
+                    }*/
+        SocialMember member = new SocialMember(name, ignore ? null : SocialRank.FRIEND);
+        if (ignore) {
+            this.addIgnore(member);
+        } else if (this.addFriend(member) && this.cc.inClan(member.name)) {
+            this.cc.update(false);
+        }
+        //}
+        //  );
     }
 
     private void delete(String name) {
-        int userId = this.deleteFriend(name);
-        if (userId != -1 && this.cc.inClan(userId)) {
+        name = capitalize(name);
+        String username = this.deleteFriend(name);
+        if (!username.equals("") && this.cc.inClan(name)) {
             this.cc.update(false);
         }
     }
 
     public static void handle(Player player, String name, int requestType) {
+        name = capitalize(name);
         if (requestType == 1) {
             player.socialList.add(player, name, false);
         } else if (requestType == 2) {
@@ -129,10 +148,10 @@ public class SocialList extends SocialContainer {
         receiver.sendReceivePM(player.name, rankId, message);
     }
 
-    public static SocialList get(int userId) {
-        SocialList loaded = LOADED.get(userId);
+    public static SocialList get(String username) {
+        SocialList loaded = LOADED.get(username);
         if (loaded == null) {
-            File file = new File(social_folder, userId + ".json");
+            File file = new File(social_folder, username + ".json");
             if (file.exists()) {
                 try {
                     byte[] bytes = Files.readAllBytes(file.toPath());
@@ -150,8 +169,8 @@ public class SocialList extends SocialContainer {
             loaded.cc = new ClanChat();
         }
         loaded.cc.parent = loaded;
-        loaded.userId = userId;
-        LOADED.put(loaded.userId, loaded);
+        loaded.username = username;
+        LOADED.put(loaded.username, loaded);
         return loaded;
     }
 
@@ -160,10 +179,9 @@ public class SocialList extends SocialContainer {
             String json = JsonUtils.GSON_EXPOSE.toJson(list);
             if(!social_folder.exists() && !social_folder.mkdirs())
                 throw new IOException("social directory could not be created!");
-            Files.write(new File(social_folder, list.userId + ".json").toPath(), json.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE);
+            Files.write(new File(social_folder, list.username + ".json").toPath(), json.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE);
         } catch (Exception e) {
             Server.logError(e.getMessage());
         }
     }
 }
-
