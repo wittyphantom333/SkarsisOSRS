@@ -195,7 +195,7 @@ public class Player extends PlayerAttributes {
     }
 
     public boolean isGroup(PlayerGroup g) {
-        return groups[g.id];
+        return primaryGroup.equals(g);
     }
 
     public boolean isModerator() {
