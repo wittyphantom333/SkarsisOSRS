@@ -10,6 +10,7 @@ import io.ruin.model.skills.construction.RoomDefinition;
 import io.ruin.model.skills.construction.room.Room;
 import io.ruin.network.central.CentralClient;
 import io.ruin.utility.OfflineMode;
+import io.ruin.api.utils.ListUtils;
 
 import java.lang.reflect.Type;
 import java.util.concurrent.ExecutorService;
@@ -43,13 +44,18 @@ public class PlayerFile {
         });
     }
 
-    public static Player load(PlayerLogin login) {
+  public static Player load(PlayerLogin login) {
         try {
             Player player;
-            if(login.info.saved == null || login.info.saved.isEmpty() || login.info.userId == 25) //todo remove this test user force reset
+            if(login.info.saved == null || login.info.saved.isEmpty())
                 player = new Player();
             else
                 player =  GSON_LOADER.fromJson(login.info.saved, Player.class);
+            if(player.getPrimaryGroup() == null)
+                player.setGroups(ListUtils.toList(PlayerGroup.REGISTERED.id));
+            else
+                player.setGroups(ListUtils.toList(player.getPrimaryGroup().id));
+
             Config.load(player);
             return player;
         } catch(Throwable t) {
