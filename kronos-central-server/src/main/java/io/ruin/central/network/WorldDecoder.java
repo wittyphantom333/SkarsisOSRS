@@ -50,7 +50,11 @@ public class WorldDecoder extends MessageDecoder<World> {
             int userId = in.readInt();
             int attempt = in.readUnsignedByte();
             String json = in.readString();
-            if (!Player.save(userId, world, json)) {
+            Player player = Server.getPlayer(userId);
+            if(player == null) {
+               return;
+            }
+            if (!Player.save(player.name, world, json)) {
                 return;
             }
             if (attempt != -1) {
