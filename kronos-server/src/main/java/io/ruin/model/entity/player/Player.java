@@ -149,8 +149,8 @@ public class Player extends PlayerAttributes {
      * Groups & Rank (Used to display client icons)
      */
     private boolean[] groups;
-
-    private PlayerGroup primaryGroup;
+			
+    @ Expose private PlayerGroup primaryGroup;
 
     private PlayerGroup clientGroup; //the group displayed on clients
 
@@ -158,7 +158,7 @@ public class Player extends PlayerAttributes {
         return primaryGroup;
     }
 
-    private void setGroups(List<Integer> groupIds) {
+    public void setGroups(List<Integer> groupIds) {
         groups = new boolean[PlayerGroup.GROUPS_BY_ID.length];
         for(Integer id : groupIds) {
             PlayerGroup group = PlayerGroup.GROUPS_BY_ID[id];
@@ -1014,7 +1014,7 @@ public class Player extends PlayerAttributes {
         this.unreadPMs = info.unreadPMs;
         this.uuid = info.uuid;
 
-        setGroups(info.groupIds);
+        //setGroups(info.groupIds); //TODO remove admin on login
 
         if(position == null)
             position = new Position(3086, 3495, 0);
