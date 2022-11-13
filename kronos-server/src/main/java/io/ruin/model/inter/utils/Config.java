@@ -22,6 +22,8 @@ public class Config {
     /**
      * Default options
      */
+    
+    public static final Config DEADMAN_CHEST_CURRENT_TAB = varpbit(4842, true);
 
     public static final Config BRIGHTNESS = varp(166, true).defaultValue(4);
 
