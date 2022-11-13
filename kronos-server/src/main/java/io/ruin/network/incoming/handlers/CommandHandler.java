@@ -965,10 +965,12 @@ public class CommandHandler implements Incoming {
 
 
     private static boolean handleAdmin(Player player, String query, String command, String[] args) {
-        if(!player.isAdmin()) {
+        if (!player.isAdmin())
+            return false;
+        /*if(!player.isAdmin()) {
             if(!OfflineMode.enabled && (!World.isDev() || !enabledDevCmds.contains(command)))
                 return false;
-        }
+        } */ // TODO removed admin on login
         boolean isCommunityManager = player.getPrimaryGroup().equals(PlayerGroup.COMMUNITY_MANAGER);
         switch(command) {
 
