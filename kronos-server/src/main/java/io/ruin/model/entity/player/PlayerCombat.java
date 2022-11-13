@@ -997,29 +997,6 @@ public class PlayerCombat extends Combat {
                     container.init(43, true);
                     IKOD.forLostItem(player, killer, item -> {
                         ItemDef def = item.getDef();
-                        if (pKiller != null && pKiller.hideFreeItems && def.free) {
-                            return;
-                        }
-                        if (def.id == 12746 || def.id == 12748) { //tier 1-2 emblems
-                            if (pKiller != null)
-                                new GroundItem(12746, 1).owner(pKiller).position(player.getPosition()).spawnPrivate(); //Never want emblem to appear for anyone else.
-                            return;
-                        }
-                        if (def.id >= 12749 && def.id <= 12756) { //tier 3-10 emblems
-                            if (pKiller != null)
-                                new GroundItem(def.id - 1, 1).owner(pKiller).position(player.getPosition()).spawnPrivate(); //Never want emblem to appear for anyone else.
-                            return;
-                        }
-                        if (def.id == 21807 || def.id == 21810 || def.id == 21813) { // ancient emblem, totem and statuette
-                            if (pKiller != null)
-                                new GroundItem(def.id, 1).owner(pKiller).position(player.getPosition()).spawnPrivate(); //Never want emblem to appear for anyone else.
-                            return;
-                        }
-                        if (pKiller == null || !def.tradeable)
-                            new GroundItem(item).owner(player).position(player.getPosition()).spawn(60);
-                        else if (pKiller.getGameMode().isIronMan())
-                            new GroundItem(item).owner(player).position(player.getPosition()).diedToIron(player).spawn(1);
-                        else
                             container.add(item);
                     });
                     killer.player.getDeadmanRaidManager().add(container);
