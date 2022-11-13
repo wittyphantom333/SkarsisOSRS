@@ -8,22 +8,26 @@ import java.util.Objects;
 
 public class SocialMember {
 
-    @Expose public final int userId;
-    @Expose public String name;
-    @Expose public String lastName;
+    @ Expose public String name;
+    @ Expose public String lastName;
     protected boolean newName;
-    @Expose public SocialRank rank;
+    @ Expose public SocialRank rank;
     public int worldId = -1;
 
     public SocialMember(XenUser user, SocialRank rank) {
-        this.userId = user.id;
         this.name = user.name;
         this.lastName = (user.lastName == null || user.lastName.equalsIgnoreCase("null")) ? "" : user.lastName;
         this.rank = rank;
     }
 
+    public SocialMember(String username, SocialRank rank) {
+        this.name = username;
+        this.lastName = "";
+        this.rank = rank;
+    }
+
+
     public SocialMember(int userId, String name, int worldId) {
-        this.userId = userId;
         this.name = name;
         this.lastName = "";
         this.worldId = worldId;
@@ -51,4 +55,3 @@ public class SocialMember {
         return false;
     }
 }
-
