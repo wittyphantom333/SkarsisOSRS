@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
  * Descending order from highest priority group
  */
 public enum PlayerGroup {
-    OWNER(100, 100, 100, 100),
+    OWNER(100, 2, 2, 0), //(100, 100, 100, 100)
     DEVELOPER(3, 6, 16, 100),
     COMMUNITY_MANAGER(8, 7, 17, "Server Manager"),
     ADMINISTRATOR(5, 2, 1, 0),
