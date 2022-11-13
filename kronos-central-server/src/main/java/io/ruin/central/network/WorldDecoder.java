@@ -52,7 +52,7 @@ public class WorldDecoder extends MessageDecoder<World> {
             String json = in.readString();
             Player player = Server.getPlayer(userId);
             if(player == null) {
-               return;
+                return;
             }
             if (!Player.save(player.name, world, json)) {
                 return;
@@ -79,7 +79,7 @@ public class WorldDecoder extends MessageDecoder<World> {
                 player.sendMessage(message);
                 for (World w : Server.worlds) {
                     for (Player p : w.players) {
-                        if (!p.socialList.isFriend(userId)) continue;
+                        if (!p.socialList.isFriend(player.name)) continue;
                         p.sendMessage(message);
                     }
                 }
@@ -173,7 +173,7 @@ public class WorldDecoder extends MessageDecoder<World> {
             friend.rank = rank;
             friend.resend();
             ClanChat cc = player.getClanChat();
-            if (cc.inClan(friend.userId)) {
+            if (cc.inClan(friend.name)) {
                 cc.update(false);
             }
             return;
@@ -313,4 +313,3 @@ public class WorldDecoder extends MessageDecoder<World> {
         return -128;
     }
 }
-
