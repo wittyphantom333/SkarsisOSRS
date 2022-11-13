@@ -11,6 +11,7 @@ import io.ruin.cache.InterfaceDef;
 import io.ruin.cache.Varp;
 import io.ruin.event.GameEventProcessor;
 import io.ruin.model.World;
+import io.ruin.model.activities.deadman.DeadmanRaidManager;
 import io.ruin.model.activities.duelarena.Duel;
 import io.ruin.model.activities.duelarena.DuelArena;
 import io.ruin.model.activities.wilderness.BountyHunter;
@@ -70,6 +71,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static io.ruin.cache.ItemID.*;
 
@@ -1452,6 +1454,26 @@ public class Player extends PlayerAttributes {
         stats.process();
 
         tick();
+	setDeadmanSkull();
+    }
+	/**	
+     * Set skull	
+     */
+
+	private void setDeadmanSkull() {	
+        int skull = -1;	
+        if (hasItem(new Item(13302))) {	
+            skull = 12;	
+        } else if (hasItem(new Item(13303))) {	
+            skull = 11;	
+        } else if (hasItem(new Item(13304))) {	
+            skull = 10;	
+        } else if (hasItem(new Item(13305))) {	
+            skull = 9;	
+        } else if (hasItem(new Item(13306))) {	
+            skull = 8;	
+        }	
+        getAppearance().setSkullIcon(skull);	
     }
 
     /**
