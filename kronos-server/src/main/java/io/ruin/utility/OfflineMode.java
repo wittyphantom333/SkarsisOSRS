@@ -75,7 +75,7 @@ public class OfflineMode {
         } catch(Exception e) {
             Server.logError("", e);
         }
-        login.info.update(userId, login.info.name, saved, ListUtils.toList(PlayerGroup.ADMINISTRATOR.id), 0);
+        login.info.update(userId, login.info.name, saved, 0);
         login.success();
         return true;
     }
