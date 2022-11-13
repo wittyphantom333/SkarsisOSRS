@@ -10,7 +10,7 @@ public class ClanContainer {
         if (this.ccMembers == null) {
             this.ccMembers = new SocialMember[100];
         }
-        if (this.ccMembersCount >= this.ccMembers.length || this.inClan(member.userId)) {
+        if (this.ccMembersCount >= this.ccMembers.length || this.inClan(member.name)) {
             return false;
         }
         this.ccMembers[this.ccMembersCount++] = member;
@@ -30,19 +30,18 @@ public class ClanContainer {
         }
     }
 
-    public SocialMember getClanMember(int userId) {
+    public SocialMember getClanMember(String username) {
         if (this.ccMembers == null) {
             return null;
         }
         for (SocialMember member : this.ccMembers) {
-            if (member == null || member.userId != userId) continue;
+            if (member == null || !member.name.equalsIgnoreCase(username)) continue;
             return member;
         }
         return null;
     }
 
-    public boolean inClan(int userId) {
-        return this.getClanMember(userId) != null;
+    public boolean inClan(String name) {
+        return this.getClanMember(name) != null;
     }
 }
-
