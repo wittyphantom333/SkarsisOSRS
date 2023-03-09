@@ -6,6 +6,7 @@ To get started with this project, you will need to have a few things installed o
 
 Java Development Kit (JDK) version 8 or higher
 Git version control system
+Once you have these dependencies installed, you can clone the repository and start building the server
 
 Contributing
 We welcome contributions from anyone who is interested in improving the server. To contribute, simply fork the repository, make your changes, and submit a pull request.
