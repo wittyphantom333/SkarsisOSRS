@@ -55,7 +55,7 @@ public class Wilderness {
         if(player.wildernessLevel == -1 || player.getMovement().hasMoved())
             player.wildernessLevel = getLevel(player.getPosition());
         player.getBountyHunter().checkActive();
-        return player.wildernessLevel > -5000; //0 //TODO this creates pvp global
+        return player.wildernessLevel > 0;
     }
 
     private static void entered(Player player) {
